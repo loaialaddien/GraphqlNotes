@@ -1,0 +1,33 @@
+{
+    user(id : "23" ) {  //we are looking for user, with id 23, and we want just the firstName
+      //since we are looking for user, this will get sent the the RootQuery and it will look for a field with name user, then it will see the args field inside the user and match the type we sent to it, then, it will get sent to the resolve function where we wrote the code about how to find the specific user
+      firstName
+    }
+    query1 : user(id:"22"){ // we can give a query a key to deffrentiate it
+      firstName
+    }
+}
+
+
+query getCompany {
+  company(id:"33"){
+    name
+  }
+}
+
+//query fragments 
+fragment companyDetails on Company{
+  id,
+  name,
+  description
+}
+//now i can use it in my queries
+
+{
+  company(id:"33"){
+   ...companyDetails
+  }
+}
+
+
+
